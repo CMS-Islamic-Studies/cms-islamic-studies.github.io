@@ -1,0 +1,31 @@
+---
+import type { ResourceSubject } from '../data/learn-resource-subjects';
+
+interface Props {
+  subjects: ResourceSubject[];
+}
+
+const { subjects } = Astro.props;
+---
+
+<div class="resource-subjects">
+  {
+    subjects.map((s) => (
+      <article class="card resource-subject-card">
+        <h2>{s.title}</h2>
+        {'body' in s && s.body && <p class="muted">{s.body}</p>}
+        {'links' in s && s.links && (
+          <ul class="resource-subject-links">
+            {s.links.map((link) => (
+              <li>
+                <a href={link.href} target="_blank" rel="noopener noreferrer">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </article>
+    ))
+  }
+</div>

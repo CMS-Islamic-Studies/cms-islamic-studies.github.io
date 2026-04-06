@@ -525,6 +525,13 @@ footer p {
   max-width: 70ch;
 }
 
+/* Full-width intro on Previous Resources (no narrow column / empty space on the right) */
+.previous-resources-page .resources-page-intro {
+  max-width: none;
+  margin-right: 0;
+  width: 100%;
+}
+
 .resource-subjects {
   display: grid;
   gap: 1rem;
