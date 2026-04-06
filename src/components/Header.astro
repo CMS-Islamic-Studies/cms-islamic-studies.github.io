@@ -1,0 +1,58 @@
+---
+const baseUrl = import.meta.env.BASE_URL;
+
+const nav: Array<
+  | { href: string; label: string }
+  | { label: string; children: { href: string; label: string }[] }
+> = [
+  { href: '', label: 'Home' },
+  { href: 'imam-schedule', label: 'Imams Schedule' },
+  {
+    label: 'Classes & Resources',
+    children: [
+      { href: 'learn/signup', label: 'Registration' },
+      { href: 'learn/current-resources', label: 'Current Resources' },
+      { href: 'learn/previous-resources', label: 'Previous Resources' },
+      { href: 'learn/recordings', label: 'Recordings' },
+    ],
+  },
+  { href: 'donate', label: 'Donate' },
+  { href: 'contact', label: 'Contact' },
+];
+---
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href={baseUrl}>
+      <img src={`${baseUrl}images/cms-logo.jpg`} alt="Colorado Muslim Society logo" class="brand-logo" />
+      <span>
+        Colorado Muslim Society
+        <small>Masjid Abu Bakr - Denver</small>
+      </span>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul class="nav-list">
+        {nav.map((item) =>
+          'children' in item ? (
+            <li class="nav-dropdown">
+              <details class="nav-dropdown-details">
+                <summary class="nav-dropdown-summary">{item.label}</summary>
+                <ul class="dropdown-menu" role="list">
+                  {item.children.map((child) => (
+                    <li>
+                      <a href={`${baseUrl}${child.href}`}>{child.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            </li>
+          ) : (
+            <li>
+              <a href={`${baseUrl}${item.href}`}>{item.label}</a>
+            </li>
+          ),
+        )}
+      </ul>
+    </nav>
+  </div>
+</header>

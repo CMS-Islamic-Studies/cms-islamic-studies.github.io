@@ -1,17 +1,57 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
 
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Colorado Muslim Society | Home"
+  description="A welcoming masjid and community organization serving Denver families, students, and visitors."
+  heroBlendNav
+>
+  <section class="hero" style={`--hero-image: url('${baseUrl}images/cms-home-banner.jpg')`}>
+    <div class="container">
+      <p class="eyebrow">Serving Denver Since 1964</p>
+      <h1>Colorado Muslim Society</h1>
+      <p class="hero-intro">A welcoming masjid and community organization in Denver, Colorado.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container home-content-stack">
+      <article class="welcome-panel welcome-panel--full">
+        <h2>Welcome to Colorado Muslim Society</h2>
+        <p>
+          Colorado Muslim Society was established in 1964, serving the Muslim community in Denver and its
+          surrounding regions. CMS provides many services for the local community, including:
+        </p>
+        <ul class="service-list">
+          <li>Salat services 5 times a day</li>
+          <li>Sunday school for children</li>
+          <li>Janazah and burial services</li>
+          <li>Islamic advice</li>
+          <li>Knowledge about Islam</li>
+          <li>Sehri and iftar food during Ramadan</li>
+          <li>Eid prayers</li>
+        </ul>
+        <p class="welcome-close">We look forward to seeing you there soon.</p>
+      </article>
+
+      <article class="welcome-panel welcome-panel--full home-masjid-message">
+        <p>
+          As you are aware, Colorado Muslim Society (Masjid Abu-Bakr) has been taking on much needed projects
+          to get the masjid up to codes and standards. The masjid has recently completed two major projects;
+          dome repair and parking lot reconstruction.
+        </p>
+        <p>
+          The Masjid still needs your help to replenish the funds used to complete these projects and take on
+          more repairs in and around Masjid property. May Allah the Almighty reward your continued support.
+        </p>
+        <p class="home-hadith">
+          The Messenger of Allah, Muhammad (peace and blessings of Allah be upon him), said: &ldquo;Whoever
+          builds a Masjid for the sake of Allah, Allah will build for him a house in Paradise.&rdquo;
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

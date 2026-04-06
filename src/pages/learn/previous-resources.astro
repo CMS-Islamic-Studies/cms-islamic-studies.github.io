@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const subjects = [
+  {
+    title: 'Aqeedah',
+    body: 'Archived creed materials, notes, and recordings from past terms will be listed here.',
+  },
+  {
+    title: 'Usul',
+    body: 'Past usul al-fiqh readings, outlines, and handouts will be kept here.',
+  },
+  {
+    title: 'Fiqh',
+    body: 'Older fiqh class resources and supplementary documents will be archived here.',
+  },
+  {
+    title: 'Hadith',
+    body: 'Hadith texts, summaries, and past class materials will be stored here.',
+  },
+  {
+    title: 'Arabic',
+    body: 'Arabic worksheets, vocabulary lists, and resources from previous terms will appear here.',
+  },
+];
+---
+
+<BaseLayout
+  title="Previous Resources | CMS"
+  description="Archived Islamic studies materials from past terms at Colorado Muslim Society: aqeedah, usul, fiqh, hadith, and Arabic."
+>
+  <div class="previous-resources-page">
+    <section class="section">
+      <div class="container">
+        <h1>Previous Resources</h1>
+        <p class="muted resources-page-intro">
+          Materials from past terms are organized by subject below. Contact the office if you need older
+          materials.
+        </p>
+
+        <div class="resource-subjects">
+          {subjects.map((s) => (
+            <article class="card resource-subject-card">
+              <h2>{s.title}</h2>
+              <p class="muted">{s.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Imams Schedule" description="Colorado Muslim Society Imam's Summer Schedule.">
+  <section class="section section-tight">
+    <div class="container imam-schedule-layout">
+      <div class="card schedule-image-wrap">
+        <img
+          src={`${baseUrl}docs/imams-schedule.png`}
+          alt=""
+          class="schedule-image"
+          width="3000"
+          height="1686"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
