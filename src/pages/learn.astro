@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const baseUrl = import.meta.env.BASE_URL;
+import { pageHref } from '../lib/page-href';
 
 const resources = [
   { title: 'Quran Education', category: 'Quran', tag: 'Beginner-friendly' },
@@ -21,13 +20,13 @@ const resources = [
         Islamic learning resources and class content inspired by the current CMS offerings.
       </p>
       <p class="muted">
-        <a href={`${baseUrl}learn/signup`}>Registration</a>
+        <a href={pageHref('learn/signup')}>Registration</a>
         {' · '}
-        <a href={`${baseUrl}learn/current-resources`}>Current Resources</a>
+        <a href={pageHref('learn/current-resources')}>Current Resources</a>
         {' · '}
-        <a href={`${baseUrl}learn/previous-resources`}>Previous Resources</a>
+        <a href={pageHref('learn/previous-resources')}>Previous Resources</a>
         {' · '}
-        <a href={`${baseUrl}learn/recordings`}>Recordings</a>
+        <a href={pageHref('learn/recordings')}>Recordings</a>
       </p>
     </div>
   </section>

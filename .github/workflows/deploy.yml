@@ -33,12 +33,29 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
+      # Root site: repo name must be <owner>.github.io (case-insensitive) → https://<owner>.github.io/
+      # Project site: any other repo → https://<owner>.github.io/<repo>/
       - name: Set Astro base path
         run: |
-          if [ "${{ github.event.repository.name }}" = "${{ github.repository_owner }}.github.io" ]; then
+          REPO_NAME="${{ github.event.repository.name }}"
+          OWNER="${{ github.repository_owner }}"
+          REPO_LC=$(echo "$REPO_NAME" | tr '[:upper:]' '[:lower:]')
+          OWNER_LC=$(echo "$OWNER" | tr '[:upper:]' '[:lower:]')
+          EXPECTED_ROOT="${OWNER_LC}.github.io"
+          {
+            echo "## Astro base path"
+            echo "- \`repository.name\`: \`$REPO_NAME\`"
+            echo "- \`repository_owner\`: \`$OWNER\`"
+            echo "- Compare: \`$REPO_LC\` vs \`$EXPECTED_ROOT\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$REPO_LC" = "$EXPECTED_ROOT" ]; then
             echo "PUBLIC_BASE_PATH=" >> $GITHUB_ENV
+            echo "Using root path (/) for user/org GitHub Pages site."
+            echo "- **Result:** root site → \`https://${OWNER_LC}.github.io/\` (not \`...github.io/${REPO_LC}/\`)" >> "$GITHUB_STEP_SUMMARY"
           else
-            echo "PUBLIC_BASE_PATH=/${{ github.event.repository.name }}" >> $GITHUB_ENV
+            echo "PUBLIC_BASE_PATH=/$REPO_LC" >> $GITHUB_ENV
+            echo "Using project base path /$REPO_LC/"
+            echo "- **Result:** project site → \`https://${OWNER_LC}.github.io/${REPO_LC}/\`" >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Install dependencies

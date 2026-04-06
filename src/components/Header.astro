@@ -1,4 +1,6 @@
 ---
+import { pageHref } from '../lib/page-href';
+
 const baseUrl = import.meta.env.BASE_URL;
 
 const nav: Array<
@@ -40,7 +42,7 @@ const nav: Array<
                 <ul class="dropdown-menu" role="list">
                   {item.children.map((child) => (
                     <li>
-                      <a href={`${baseUrl}${child.href}`}>{child.label}</a>
+                      <a href={pageHref(child.href)}>{child.label}</a>
                     </li>
                   ))}
                 </ul>
@@ -48,7 +50,7 @@ const nav: Array<
             </li>
           ) : (
             <li>
-              <a href={`${baseUrl}${item.href}`}>{item.label}</a>
+              <a href={pageHref(item.href)}>{item.label}</a>
             </li>
           ),
         )}
