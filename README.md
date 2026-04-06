@@ -1,4 +1,4 @@
-# CMS Islamic Studies (website)
+# CMS Islamic Studies
 
 ## Purpose
 
